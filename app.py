@@ -1,7 +1,7 @@
 # 
 import streamlit as st
 import time
-import plotly.express as px
+
 import pandas as pd
 import altair as alt
 import streamlit as st
@@ -59,7 +59,7 @@ def radar_chart():
     koku],
     theta=['甘味','酸味','苦み',
            '風味', 'コク']))
-    fig = px.line_polar(df, r='r', theta='theta', line_close=True)
+    fig = plotly.line_polar(df, r='r', theta='theta', line_close=True)
     placeholder.write(fig)
 
 def csv_output():
