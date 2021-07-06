@@ -58,7 +58,7 @@ def radar_chart():
     koku],
     theta=['甘味','酸味','苦み',
            '風味', 'コク']))
-    fig = plotly.line_polar(df, r='r', theta='theta', line_close=True)
+    fig = st.plotly_chart(df, r='r', theta='theta', line_close=True)
     placeholder.write(fig)
 
 def csv_output():
