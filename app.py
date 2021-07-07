@@ -1,7 +1,7 @@
 # 
 import streamlit as st
 import time
-import plotly as px
+import plotly.express as px
 import pandas as pd
 import altair as alt
 import datetime
