@@ -8,7 +8,7 @@ import datetime
 import os
 import numpy as np
 
-st.title('マーマレード食味分析')
+st.markdown('マーマレード食味分析')
 
 name = st.text_input('ニックネームを入力してください。 ※入力するとボタンが出ます')
 
