@@ -70,10 +70,10 @@ def csv_output():
     csv_name = name + str(d_today.year) + str(d_today.month) + str(d_today.day) + '.csv'
 
     if not os.path.isfile(csv_name):
-        csv_data.to_csv(csv_name,header=True,encoding='utf_8_sig',
+        csv_data.to_csv('C:\Work_biz\uwajima\' + csv_name,header=True,encoding='utf_8_sig',
                     columns=["名前","マーマレード種類", "好み", "甘味","酸味","苦み","風味","コク"],index=False)
     else: # else it exists so append without writing the header
-        csv_data.to_csv(csv_name, mode='a', header=False,encoding='utf_8_sig',index=False)
+        csv_data.to_csv('C:\Work_biz\uwajima\' + csv_name, mode='a', header=False,encoding='utf_8_sig',index=False)
 
 # csv_data.to_csv(csv_name,header=True,encoding='utf_8_sig',
 #                 columns=["名前","マーマレード種類", "好み", "甘味","酸味","苦み","風味","コク"],index=False)
