@@ -1,4 +1,5 @@
 # 
+ 
 import streamlit as st
 import time
 import plotly.express as px
@@ -7,10 +8,23 @@ import altair as alt
 import datetime
 import os
 import numpy as np
+import gspread
+
+from google.oauth2.service_account import Credentials
+from oauth2client.service_account import ServiceAccountCredentials
+from gspread_dataframe import set_with_dataframe
+import json
+import gspread_dataframe as gd
+
 
 st.title('マーマレード食味分析')
 
 name = st.text_input('ニックネームを入力してください。 ※入力するとボタンが出ます')
+sex = st.selectbox(
+    '性別',
+     (' ','女性', '男性'))
+st.write('性別:', sex)
+age = st.number_input('年齢を入力してください。',0,100,1)
 
 option = st.selectbox(
     'マーマレードの種類',
@@ -62,18 +76,43 @@ def radar_chart():
     placeholder.write(fig)
 
 def csv_output():
-    csv_data =pd.DataFrame(data=([name,option,like_mr,sweet,sannmi,nigami,huumi,koku]))
+    csv_data =pd.DataFrame(data=([name,sex,age,option,like_mr,sweet,sannmi,nigami,huumi,koku]))
     csv_data=csv_data.T
 
-    csv_data.columns =(["名前", "マーマレード種類", "好み", "甘味","酸味","苦み","風味","コク"])
+    csv_data.columns =(["名前","性別","年齢", "マーマレード種類", "好み", "甘味","酸味","苦み","風味","コク"])
     d_today = datetime.date.today ( )
     csv_name = name + str(d_today.year) + str(d_today.month) + str(d_today.day) + '.csv'
 
-    if not os.path.isfile(csv_name):
-        csv_data.to_csv(csv_name,header=True,encoding='utf_8_sig',
-                    columns=["名前","マーマレード種類", "好み", "甘味","酸味","苦み","風味","コク"],index=False)
-    else: # else it exists so append without writing the header
-        csv_data.to_csv(csv_name, mode='a', header=False,encoding='utf_8_sig',index=False)
+    # if not os.path.isfile(csv_name):
+    #     csv_data.to_csv(csv_name,header=True,encoding='utf_8_sig',
+    #                 columns=["名前","マーマレード種類", "好み", "甘味","酸味","苦み","風味","コク"],index=False)
+    # else: # else it exists so append without writing the header
+    #     csv_data.to_csv(csv_name, mode='a', header=False,encoding='utf_8_sig',index=False)
+    scopes = [
+                'https://www.googleapis.com/auth/spreadsheets',
+                'https://www.googleapis.com/auth/drive'
+            ]
+    SERVICE_ACCOUNT_FILE = 'kankitsu.json'
+
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(
+        'kankitsu.json', 
+        scopes=scopes
+    )
+    gs = gspread.authorize(credentials)
+
+    SPREADSHEET_KEY ='1s8CEemxoE_HDe0Jhp7yZMwMh0-0xyOCXGAdRk1utf5o'
+    worksheet = gs.open_by_key(SPREADSHEET_KEY).worksheet('kankitsu')
+
+    workbook = gs.open_by_key(SPREADSHEET_KEY)
+    worksheet = workbook.worksheet('kankitsu')
+    # set_with_dataframe(workbook.worksheet('kankitsu'),csv_data,include_index=True,)
+ 
+    ws = gs.open("kankitsu").worksheet("kankitsu")
+    existing = pd.DataFrame(ws.get_all_records())
+    # existing.drop([''],axis=1,inplace=True)
+    updated = existing.append(csv_data)
+    gd.set_with_dataframe(ws, updated)
+    
 
 # csv_data.to_csv(csv_name,header=True,encoding='utf_8_sig',
 #                 columns=["名前","マーマレード種類", "好み", "甘味","酸味","苦み","風味","コク"],index=False)
@@ -88,4 +127,5 @@ if name!="":
         while True:
             radar_chart()
             csv_output()
+                       
             break
