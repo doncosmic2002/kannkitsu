@@ -4,4 +4,6 @@ plotly-express
 pandas
 altair
 gspread
-
+gspread_dataframe-set_with_dataframe
+json
+gspread_dataframe
