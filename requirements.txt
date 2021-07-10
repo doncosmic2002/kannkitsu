@@ -4,7 +4,6 @@ plotly-express
 pandas
 altair
 gspread
-json
 gspread_dataframe
 google.oauth2.service_account
 oauth2client.service_account
