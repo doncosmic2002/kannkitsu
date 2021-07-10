@@ -3,3 +3,9 @@ plotly
 plotly-express
 pandas
 altair
+gspread
+google.oauth2.service_account-Credentials
+oauth2client.service_account-ServiceAccountCredentials
+gspread_dataframe-set_with_dataframe
+json
+gspread_dataframe
