@@ -7,3 +7,4 @@ gspread
 gspread_dataframe-set_with_dataframe
 json
 gspread_dataframe
+google.oauth2.service_account
