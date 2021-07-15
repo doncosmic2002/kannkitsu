@@ -40,7 +40,7 @@ st.sidebar.write("""
 ## 好みを選択してください。
 """)
 
-like_mr = st.sidebar.slider('好み', 1, 10, 5)
+like_mr = st.sidebar.slider('好み', 0, 10, 5)
 st.write('好み:', like_mr)
 
 st.sidebar.write("""
