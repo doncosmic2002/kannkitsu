@@ -17,7 +17,7 @@ import json
 import gspread_dataframe as gd
 
 
-st.title('マーマレード食味分析')
+st.title('ジャム・マーマレードテイスティングシート')
 
 name = st.text_input('ニックネームを入力してください。 ※入力するとボタンが出ます')
 sex = st.selectbox(
@@ -27,7 +27,7 @@ st.write('性別:', sex)
 age = st.number_input('年齢を入力してください。',0,100,1)
 
 option = st.selectbox(
-    'マーマレードの種類',
+    'ジャム・マーマレードの種類',
      ('ブラッドオレンジ', 'グリーンレモン', 'レッドレモン'))
 st.write('マーマレードの種類:', option)
 
