@@ -47,7 +47,7 @@ st.sidebar.write("""
 ## 各食味の数値を選択してください。
 """)
 
-sweet = st.sidebar.slider('甘味', 1, 10, 5)
+sweet = st.sidebar.slider('甘味', 0, 10, 5)
 sannmi = st.sidebar.slider('酸味', 1, 10, 5)
 nigami = st.sidebar.slider('苦み', 1, 10, 5)
 huumi = st.sidebar.slider('風味', 1, 10, 5)
