@@ -47,11 +47,11 @@ st.sidebar.write("""
 ## 各食味の数値を選択してください。
 """)
 
-sweet = st.sidebar.slider('甘味', 1, 5, 3)
-sannmi = st.sidebar.slider('酸味', 1, 5, 3)
-nigami = st.sidebar.slider('苦み', 1, 5, 3)
-huumi = st.sidebar.slider('風味', 1, 5, 3)
-koku = st.sidebar.slider('コク', 1, 5, 3)
+sweet = st.sidebar.slider('甘味', 1, 10, 5)
+sannmi = st.sidebar.slider('酸味', 1, 10, 5)
+nigami = st.sidebar.slider('苦み', 1, 10, 5)
+huumi = st.sidebar.slider('風味', 1, 10, 5)
+koku = st.sidebar.slider('コク', 1, 10, 5)
 
 data = pd.DataFrame({
     "甘味":[sweet],
