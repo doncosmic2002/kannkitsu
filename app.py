@@ -117,11 +117,11 @@ def radar_chart():
     placeholder.write(fig)
 
 def csv_output():
-    tmpdate = datetime.datetime
-    csv_data =pd.DataFrame(data=([tmpdate,name,sex,age,option,like_mr,sweet,sannmi,nigami,huumi,koku]))
+    tmpdate = datetime.datetime()
+    csv_data =pd.DataFrame(data=([tmpdate,name,sex,age,syubetu,option,like_mr,sweet,sannmi,nigami,huumi,koku]))
     csv_data=csv_data.T
     
-    csv_data.columns =(["データ出力日","名前","性別","年齢", "マーマレード種類", "好み", "甘味","酸味","苦み","風味","コク"])
+    csv_data.columns =(["データ出力日","名前","性別","年齢", "種別","テースティング名前", "好み", "甘味","酸味","苦み","風味","コク"])
     d_today = datetime.date.today ( )
     csv_name = name + str(d_today.year) + str(d_today.month) + str(d_today.day) + '.csv'
 
