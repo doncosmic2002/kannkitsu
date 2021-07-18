@@ -117,7 +117,7 @@ def radar_chart():
     placeholder.write(fig)
 
 def csv_output():
-    tmpdate = datetime.datetime.today()
+    tmpdate = datetime.date.today()
     csv_data =pd.DataFrame(data=([tmpdate,name,sex,age,syubetu,option,like_mr,sweet,sannmi,nigami,huumi,koku]))
     csv_data=csv_data.T
     
