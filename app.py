@@ -1,5 +1,6 @@
 # 
  
+ 
 import streamlit as st
 import time
 import plotly.express as px
@@ -17,7 +18,7 @@ import json
 import gspread_dataframe as gd
 
 
-st.title('ジャム・マーマレードテイスティングシート')
+st.title('マーマレード・ジャムテイスティングシート')
 
 name = st.text_input('ニックネームを入力してください。 ※入力するとボタンが出ます')
 sex = st.selectbox(
@@ -26,9 +27,49 @@ sex = st.selectbox(
 st.write('性別:', sex)
 age = st.number_input('年齢を入力してください。',0,100,1)
 
+syubetu = st.selectbox(
+    'マーマレード・ジャム',
+     ('マーマレード', 'ジャム'))
+
+sel_contents =('早生温州（宮川早生）',
+'甘平',
+'紅まどんな（愛果試２８号）',
+'伊予柑',
+'不知火（デコポン）',
+'ポンカン',
+'だいだい',
+'ブラッドオレンジ',
+'八朔',
+'甘夏',
+'夏みかん',
+'南津海',
+'せとか',
+'清見',
+'ノバ',
+'赤レモン（ラングプアライム）',
+'グリーンレモン',
+'レモン',
+'河内晩柑',
+'ライム',
+'柚子',
+'シークワーサー')
+if syubetu=='ジャム':
+    sel_contents =('イチジク',
+    'いちご',
+    'ブルーベリー',
+    'キウイフルーツ',
+    'プラム（ハニーローザ）',
+    '梅',
+    'あんず',
+    '柿',
+    '枇杷',
+    'ローゼル',
+    '栗',
+    '桃')
+
 option = st.selectbox(
-    'ジャム・マーマレードの種類',
-     ('ブラッドオレンジ', 'グリーンレモン', 'レッドレモン'))
+    'マーマレード・ジャムの種類',
+    sel_contents)
 st.write('マーマレードの種類:', option)
 
 st.sidebar.write("""
@@ -76,10 +117,11 @@ def radar_chart():
     placeholder.write(fig)
 
 def csv_output():
-    csv_data =pd.DataFrame(data=([name,sex,age,option,like_mr,sweet,sannmi,nigami,huumi,koku]))
+    tmpdate = datetime.datetime
+    csv_data =pd.DataFrame(data=([tmpdate,name,sex,age,option,like_mr,sweet,sannmi,nigami,huumi,koku]))
     csv_data=csv_data.T
-
-    csv_data.columns =(["名前","性別","年齢", "マーマレード種類", "好み", "甘味","酸味","苦み","風味","コク"])
+    
+    csv_data.columns =(["データ出力日","名前","性別","年齢", "マーマレード種類", "好み", "甘味","酸味","苦み","風味","コク"])
     d_today = datetime.date.today ( )
     csv_name = name + str(d_today.year) + str(d_today.month) + str(d_today.day) + '.csv'
 
