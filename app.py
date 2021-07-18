@@ -20,7 +20,7 @@ import gspread_dataframe as gd
 
 st.title('マーマレード・ジャムテイスティング')
 
-name = st.text_input('ニックネームを入力してください。 ※入力するとボタンが出ます')
+name = st.text_input('ニックネームを入力してください。 ※入力すると「Start」ボタンが出ます')
 sex = st.selectbox(
     '性別',
      (' ','女性', '男性'))
